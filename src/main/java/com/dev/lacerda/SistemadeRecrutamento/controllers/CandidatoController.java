@@ -40,4 +40,20 @@ public class CandidatoController {
                 candidatoService.buscarPorId(id)
         );
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarCandidato(@PathVariable Long id) {
+        candidatoService.deletarCandidato(id);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CandidatoModel> atualizarCandidato(@PathVariable Long id, @RequestBody CandidatoModel candidato) {
+
+        return ResponseEntity.ok(
+                candidatoService.atualizarCandidato(id, candidato)
+        );
+
+    }
 }

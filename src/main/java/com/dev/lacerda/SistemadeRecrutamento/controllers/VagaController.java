@@ -32,4 +32,20 @@ public class VagaController {
         return vagaService.listarVagas();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<VagaModel> buscarVagaPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(
+                vagaService.buscarVagaPorId(id)
+        );
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<VagaModel> atualizarVaga(@PathVariable Long id, @RequestBody VagaModel vaga) {
+
+        return ResponseEntity.ok(
+                vagaService.atualizarVaga(id, vaga)
+        );
+    }
+
 }

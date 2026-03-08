@@ -28,4 +28,19 @@ public class CandidatoService {
                 .orElseThrow(() ->
                         new RuntimeException("Candidato não encontrado"));
     }
+
+    public void deletarCandidato(Long id) {
+        candidatoRepository.deleteById(id);
+    }
+
+    public CandidatoModel atualizarCandidato(Long id, CandidatoModel candidatoatualizado) {
+
+        CandidatoModel candidato = candidatoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Candidato não encontrado"));
+
+        candidato.setNome(candidatoatualizado.getNome());
+        candidato.setEmail(candidatoatualizado.getEmail());
+
+        return candidatoRepository.save(candidato);
+    }
 }

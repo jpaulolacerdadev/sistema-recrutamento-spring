@@ -27,7 +27,7 @@ public class VagaModel implements Serializable {
     @Column
     private String nivel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "vaga_id")
     private EmpresaModel empresa;
 

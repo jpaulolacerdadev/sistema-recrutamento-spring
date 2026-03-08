@@ -7,6 +7,7 @@ import com.dev.lacerda.SistemadeRecrutamento.repositories.VagaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VagaService {
@@ -34,5 +35,22 @@ public class VagaService {
 
     public List<VagaModel> listarVagas() {
         return vagaRepository.findAll();
+    }
+
+    public VagaModel buscarVagaPorId(Long id) {
+        return vagaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vaga inexistente"));
+    }
+
+    public  VagaModel atualizarVaga(Long id, VagaModel vagaAtualizada) {
+
+        VagaModel vaga = vagaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vaga inexistente"));
+
+        vaga.setTitulo(vagaAtualizada.getTitulo());
+        vaga.setDescricao(vagaAtualizada.getDescricao());
+        vaga.setNivel(vagaAtualizada.getNivel());
+
+        return vagaRepository.save(vaga);
     }
 }
