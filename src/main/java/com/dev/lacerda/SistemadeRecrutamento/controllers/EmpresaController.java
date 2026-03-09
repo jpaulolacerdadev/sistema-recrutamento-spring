@@ -31,4 +31,17 @@ public class EmpresaController {
     public List<EmpresaModel> listarEmpresas() {
         return empresaService.listarEmpresas();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EmpresaModel> atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaModel empresa ) {
+        return ResponseEntity.ok(
+                empresaService.atualizarEmpresa(id, empresa)
+        );
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarEmpresa(@PathVariable Long id) {
+        empresaService.deletarEmpresa(id);
+        return ResponseEntity.ok().build();
+    }
 }
